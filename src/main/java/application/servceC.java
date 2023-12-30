@@ -37,12 +37,10 @@ public class servceC {
 
    public int updateFimlyear(String Fname,int Fyear){
        int n=0;
-       String upQ="update filmdetails set film_year=? where film_name=?;";
+       String upQ="update filmdetails set film_year="+Fyear+" where film_name='"+Fname+"';";
        try {
-           PreparedStatement pstmt=conn.prepareStatement(upQ);
-           pstmt.setInt(1,Fyear);
-           pstmt.setString(2,Fname);
-           n=pstmt.executeUpdate();
+           Statement stmt = conn.createStatement();
+          n= stmt.executeUpdate(upQ);
        } catch (SQLException e) {
            System.out.println(e);
        }
